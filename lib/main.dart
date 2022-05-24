@@ -1,5 +1,6 @@
 import 'package:expanses/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main(List<String> args) => runApp(ExpansesApp());
 
@@ -75,7 +76,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  e.date.toLocal().toString(),
+                                  DateFormat('d MMM y').format(e.date),
                                   style: TextStyle(
                                     color: Colors.grey,
                                   ),
