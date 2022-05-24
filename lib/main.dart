@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
     Transaction(
         id: 't2',
         title: 'Camiseta branca botões',
-        value: 90.75,
+        value: 109.75,
         date: DateTime.now()),
   ];
 
@@ -53,21 +53,33 @@ class HomePage extends StatelessWidget {
                                   horizontal: 15, vertical: 10),
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Colors.purple, width: 2)),
+                                      color: Colors.purple.shade200, width: 2)),
                               padding: EdgeInsets.all(10),
                               child: Text(
-                                e.value.toString(),
+                                'R\$ ${e.value.toStringAsFixed(2)}',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
-                                  color: Colors.purple,
+                                  color: Colors.purple.shade200,
                                 ),
                               ),
                             ),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(e.title),
-                                Text(e.date.toLocal().toString()),
+                                Text(
+                                  e.title,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  e.date.toLocal().toString(),
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                ),
                               ],
                             ),
                           ],
