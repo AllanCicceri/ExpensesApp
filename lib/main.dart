@@ -102,9 +102,9 @@ class HomePage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        ElevatedButton(
+                        TextButton(
                           style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
+                              foregroundColor: MaterialStateProperty.all(
                                   Colors.purple.shade200)),
                           onPressed: () {},
                           child: Text('Nova Transação'),
