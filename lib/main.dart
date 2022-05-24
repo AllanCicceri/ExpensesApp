@@ -37,57 +37,85 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('ExpensesApp'),
         ),
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Card(
+            child: Text('Gráfico'),
+          ),
+          Column(
             children: [
-              Card(
-                child: Text('Gráfico'),
-              ),
-              Column(
-                children: [
-                  ..._transactions.map((e) => Card(
-                        child: Row(
+              ..._transactions.map((e) => Card(
+                    elevation: 3,
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.purple.shade200, width: 2)),
+                          padding: EdgeInsets.all(10),
+                          child: Text(
+                            'R\$ ${e.value.toStringAsFixed(2)}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.purple.shade200,
+                            ),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 10),
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.purple.shade200, width: 2)),
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                'R\$ ${e.value.toStringAsFixed(2)}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.purple.shade200,
-                                ),
+                            Text(
+                              e.title,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
                               ),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  e.title,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  DateFormat('d MMM y').format(e.date),
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              DateFormat('d MMM y').format(e.date),
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
                             ),
                           ],
                         ),
-                      ))
+                      ],
+                    ),
+                  ))
+            ],
+          ),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Value (R\$)'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Colors.purple.shade200)),
+                          onPressed: () {},
+                          child: Text('Nova Transação'),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
-            ]));
+            ),
+          ),
+        ]));
   }
 }
