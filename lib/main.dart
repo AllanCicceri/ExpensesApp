@@ -23,11 +23,14 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('ExpensesApp'),
         ),
-        body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Card(
-            child: Text('Gráfico'),
-          ),
-          TransactionUser(),
-        ]));
+        body: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Card(
+              child: Text('Gráfico'),
+            ),
+            TransactionUser(),
+          ]),
+        ));
   }
 }

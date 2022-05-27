@@ -33,7 +33,6 @@ class TransactionForm extends StatelessWidget {
                         foregroundColor:
                             MaterialStateProperty.all(Colors.purple.shade200)),
                     onPressed: () {
-                      print("test");
                       final title = titleController.text;
                       final value =
                           double.tryParse(valueController.text) ?? 0.0;
