@@ -20,17 +20,33 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('ExpensesApp'),
-        ),
-        body: SingleChildScrollView(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Card(
-              child: Text('Gráfico'),
+      appBar: AppBar(
+        title: Text('ExpensesApp'),
+        actions: [
+          Container(
+            padding: EdgeInsets.all(10),
+            child: FloatingActionButton(
+              onPressed: () {},
+              child: Icon(
+                Icons.add,
+              ),
             ),
-            TransactionUser(),
-          ]),
-        ));
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Card(
+            child: Text('Gráfico'),
+          ),
+          TransactionUser(),
+        ]),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+    );
   }
 }
