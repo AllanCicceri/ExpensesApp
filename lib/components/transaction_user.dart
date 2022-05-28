@@ -23,36 +23,6 @@ class _TransactionUserState extends State<TransactionUser> {
         title: 'Camiseta branca botões',
         value: 109.75,
         date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Camiseta branca botões',
-        value: 109.75,
-        date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Camiseta branca botões',
-        value: 109.75,
-        date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Camiseta branca botões',
-        value: 109.75,
-        date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Camiseta branca botões',
-        value: 109.75,
-        date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Camiseta branca botões',
-        value: 109.75,
-        date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Camiseta branca botões',
-        value: 109.75,
-        date: DateTime.now()),
   ];
 
   _addTransaction(String title, double value) {
