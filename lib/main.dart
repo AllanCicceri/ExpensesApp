@@ -10,10 +10,33 @@ import 'models/transaction.dart';
 void main(List<String> args) => runApp(ExpansesApp());
 
 class ExpansesApp extends StatelessWidget {
+  final ThemeData theme = ThemeData();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomePage(),
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(
+          primary: Colors.purple,
+          secondary: Colors.amber,
+        ),
+        textTheme: theme.textTheme.copyWith(
+          headline6: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
