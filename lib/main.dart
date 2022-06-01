@@ -10,8 +10,6 @@ import 'models/transaction.dart';
 void main(List<String> args) => runApp(ExpansesApp());
 
 class ExpansesApp extends StatelessWidget {
-  const ExpansesApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,14 +48,15 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
+
+    Navigator.of(context).pop();
   }
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          void myFunc(String, double) {} //REMOVER DEPOIS, SÓ PRA COMPILAR
-          return TransactionForm(myFunc);
+          return TransactionForm(_addTransaction);
         });
   }
 
