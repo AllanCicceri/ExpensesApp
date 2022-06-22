@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'dart:math';
 
+import 'package:expanses/components/chart.dart';
 import 'package:expanses/components/transaction_form.dart';
 import 'package:flutter/material.dart';
 
@@ -48,17 +49,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Transaction> _transactions = [
-    // Transaction(
-    //     id: 't1',
-    //     title: 'Tela de projeção',
-    //     value: 110.50,
-    //     date: DateTime.now()),
-    // Transaction(
-    //     id: 't2',
-    //     title: 'Camiseta branca botões',
-    //     value: 109.75,
-    //     date: DateTime.now()),
+    Transaction(
+        id: 't0',
+        title: 'Tela de projeção',
+        value: 110.50,
+        date: DateTime.now().subtract(Duration(days: 30))),
+    Transaction(
+        id: 't1',
+        title: 'Tela de projeção',
+        value: 110.50,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't2',
+        title: 'Camiseta branca botões',
+        value: 109.75,
+        date: DateTime.now().subtract(Duration(days: 2))),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions
+        .where(
+            (tr) => tr.date.isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -101,13 +114,13 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Card(
-            child: Text('Gráfico'),
-          ),
-          TransactionList(_transactions),
-        ]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Chart(_recentTransactions),
+            TransactionList(_transactions),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _openTransactionFormModal(context),
