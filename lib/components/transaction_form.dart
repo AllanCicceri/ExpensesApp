@@ -40,15 +40,27 @@ class _TransactionFormState extends State<TransactionForm> {
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(labelText: 'Value (R\$)'),
             ),
+            Container(
+              height: 50,
+              child: Row(
+                children: [
+                  Text('No date'),
+                  SizedBox(
+                    width: 100,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('Select date'),
+                  )
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
-                    style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.purple.shade200)),
+                  ElevatedButton(
                     onPressed: _submitForm,
                     child: Text('Nova Transação'),
                   ),
