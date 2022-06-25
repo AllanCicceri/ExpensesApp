@@ -48,23 +48,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-        id: 't0',
-        title: 'Tela de projeção',
-        value: 110.50,
-        date: DateTime.now().subtract(Duration(days: 30))),
-    Transaction(
-        id: 't1',
-        title: 'Tela de projeção',
-        value: 110.50,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: 't2',
-        title: 'Camiseta branca botões',
-        value: 109.75,
-        date: DateTime.now().subtract(Duration(days: 2))),
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions
@@ -73,12 +57,12 @@ class _HomePageState extends State<HomePage> {
         .toList();
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
