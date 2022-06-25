@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double) onSubmit;
@@ -12,6 +13,7 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   TextEditingController titleController = TextEditingController();
   TextEditingController valueController = TextEditingController();
+  DateTime? _selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,21 @@ class _TransactionFormState extends State<TransactionForm> {
       }
 
       widget.onSubmit(title, value);
+    }
+
+    _showDatePicker() {
+      showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now().subtract(Duration(days: 365)),
+        lastDate: DateTime.now().add(Duration(days: 365)),
+      ).then((pickedDate) {
+        if (pickedDate != null) {
+          setState(() {
+            _selectedDate = pickedDate;
+          });
+        }
+      });
     }
 
     return Card(
@@ -44,13 +61,14 @@ class _TransactionFormState extends State<TransactionForm> {
               height: 50,
               child: Row(
                 children: [
-                  Text('No date'),
-                  SizedBox(
-                    width: 100,
+                  Expanded(
+                    child: Text(_selectedDate == null
+                        ? 'No date selected'
+                        : DateFormat('dd/MM/y').format(_selectedDate!)),
                   ),
                   TextButton(
-                    onPressed: () {},
-                    child: Text('Select date'),
+                    onPressed: _showDatePicker,
+                    child: Text('Select Date'),
                   )
                 ],
               ),
@@ -62,7 +80,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 children: [
                   ElevatedButton(
                     onPressed: _submitForm,
-                    child: Text('Nova Transação'),
+                    child: Text('New Transaction'),
                   ),
                 ],
               ),
