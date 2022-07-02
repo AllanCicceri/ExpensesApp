@@ -89,9 +89,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       title: Text('ExpensesApp'),
       actions: [
+        if (isLandscape)
+          Container(
+            padding: EdgeInsets.all(10),
+            child: FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  _showChart = !_showChart;
+                });
+              },
+              child: Icon(
+                _showChart ? Icons.list : Icons.add_chart,
+              ),
+            ),
+          ),
         Container(
           padding: EdgeInsets.all(10),
           child: FloatingActionButton(
@@ -100,7 +117,7 @@ class _HomePageState extends State<HomePage> {
               Icons.add,
             ),
           ),
-        )
+        ),
       ],
     );
 
@@ -114,26 +131,12 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Show Chart'),
-                Switch(
-                  value: _showChart,
-                  onChanged: (value) {
-                    setState(() {
-                      _showChart = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-            if (_showChart)
+            if (_showChart || !isLandscape)
               Container(
-                height: availableHeight * 0.3,
+                height: availableHeight * (isLandscape ? 0.7 : 0.3),
                 child: Chart(_recentTransactions),
               ),
-            if (!_showChart)
+            if (!_showChart || !isLandscape)
               Container(
                 height: availableHeight * 0.7,
                 child: TransactionList(_transactions, _removeTransaction),
