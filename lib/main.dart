@@ -1,5 +1,5 @@
-import 'dart:ffi';
 import 'dart:math';
+import 'dart:io';
 
 import 'package:expanses/components/chart.dart';
 import 'package:expanses/components/transaction_form.dart';
@@ -144,10 +144,12 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _openTransactionFormModal(context),
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              onPressed: () => _openTransactionFormModal(context),
+              child: Icon(Icons.add),
+            ),
     );
   }
 }
