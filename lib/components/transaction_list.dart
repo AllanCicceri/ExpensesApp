@@ -1,6 +1,6 @@
+import 'package:expanses/components/transaction_item.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
-import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -36,34 +36,13 @@ class TransactionList extends StatelessWidget {
             itemBuilder: (ctx, index) {
               final tr = transactions[index];
 
-              return Card(
-                elevation: 4,
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: FittedBox(
-                          child: Text('R\$${tr.value.toStringAsFixed(2)}')),
-                    ),
-                  ),
-                  title: Text(
-                    tr.title,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  subtitle: Text(DateFormat('d MMM y').format(tr.date)),
-                  trailing: IconButton(
-                      onPressed: () => onRemove(tr.id),
-                      icon: Icon(
-                        Icons.delete,
-                      )),
-                ),
-              );
+              return TransactionItem(tr: tr, onRemove: onRemove);
             },
           );
   }
 }
+
+
 
 
 // Card(

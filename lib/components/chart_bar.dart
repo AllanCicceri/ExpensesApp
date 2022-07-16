@@ -5,7 +5,8 @@ class ChartBar extends StatelessWidget {
   final double value;
   final double percentage;
 
-  ChartBar({required this.label, this.value = 0.0, this.percentage = 0.0});
+  const ChartBar(
+      {required this.label, this.value = 0.0, this.percentage = 0.0});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class ChartBar extends StatelessWidget {
                       color: Colors.grey,
                       width: 1.0,
                     ),
-                    color: Color.fromRGBO(220, 220, 220, 1),
+                    color: const Color.fromRGBO(220, 220, 220, 1),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
